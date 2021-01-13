@@ -1,7 +1,8 @@
 #[allow(dead_code)]
 fn main() {
-    data_types()
+    
 }
+
 
 #[allow(dead_code)]
 fn data_types() {
