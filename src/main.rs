@@ -1,8 +1,25 @@
 #[allow(dead_code)]
 fn main() {
-    
+    ownership();
 }
 
+fn ownership() {
+    let mut s = String::from("Hello");
+    s.push_str(", world!"); // push_str() appends a literal to a String
+    println!("{}", s); // This will print 'hello, world!'
+
+
+    let s1 = String::from("hello");
+    //let s2 = s1; // Doesn't work because it tries to copy an empy value because of droping s1
+    let s2 = s1.clone();
+
+    println!("s1 = {}, s2 = {}", s1, s2);
+
+    let x = 5;
+    let y = x;
+    println!("x = {}, y = {}", x, y);
+
+}
 
 #[allow(dead_code)]
 fn data_types() {
@@ -42,9 +59,7 @@ fn data_types() {
     let x = (500, 6.4, 1);
     let five_hundred = x.0;
     let six_point_four = x.1;
-    let one = x.2
-
-
+    let one = x.2;
 }
 
 #[allow(dead_code)]
