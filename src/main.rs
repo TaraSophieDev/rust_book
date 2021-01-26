@@ -1,6 +1,29 @@
 #[allow(dead_code)]
 fn main() {
-    ownership();
+    reference_borrowing();
+}
+
+fn reference_borrowing() {
+    let s1 = String::from("hello");
+    let len = calculate_length(&s1);
+
+    println!("The length of '{}' is {}.", s1, len);
+
+    let mut s = String::from("hello");
+
+    {
+        let r1 = &mut s;
+        // r1 goes out of scope here, so we can make a new reference with no problems.
+    }
+    let r2 = &mut s;
+    // r2 will work bc r1 went out of scope
+
+    let r2 = &s; //Works
+    //{let r3 = &mut s;} Won't work.
+}
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
 }
 
 fn ownership() {
@@ -10,7 +33,7 @@ fn ownership() {
 
 
     let s1 = String::from("hello");
-    //let s2 = s1; // Doesn't work because it tries to copy an empy value because of droping s1
+    //let s2 = s1; // Doesn't work because it tries to copy an empty value because of dropping s1
     let s2 = s1.clone();
 
     println!("s1 = {}, s2 = {}", s1, s2);
@@ -21,7 +44,6 @@ fn ownership() {
 
 }
 
-#[allow(dead_code)]
 fn data_types() {
     let guess: u32 = "42".parse().expect("Not a number!");
 
@@ -55,14 +77,13 @@ fn data_types() {
     let (x,y,z)  = tup;
     println!("The value of y is: {}", y);
 
-    //Acces variable with index
+    //Access variable with index
     let x = (500, 6.4, 1);
     let five_hundred = x.0;
     let six_point_four = x.1;
     let one = x.2;
 }
 
-#[allow(dead_code)]
 fn shadowing() {
     let y = 5;
     let y = y + 1;
@@ -73,7 +94,6 @@ fn shadowing() {
     let spaces = spaces.len();
 }
 
-#[allow(dead_code)]
 fn mutable_variables() {
     let mut x = 5;
     println!("The value of x is: {}", x);
